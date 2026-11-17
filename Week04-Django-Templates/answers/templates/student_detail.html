@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}{{ student.firstName }} {{ student.lastName }}{% endblock %}
+{% block content %}
+<h2>Student details</h2>
+<dl>
+  <dt>Student ID</dt><dd>{{ student.id }}</dd>
+  <dt>First name</dt><dd>{{ student.firstName|capfirst }}</dd>
+  <dt>Last name</dt><dd>{{ student.lastName|upper }}</dd>
+  <dt>Age</dt><dd>{{ student.age }}</dd>
+  <dt>Email</dt><dd>{{ student.email|default:"Not provided" }}</dd>
+  <dt>Enrolment date</dt><dd>{{ student.enrolmentDate|date:"d M Y" }}</dd>
+</dl>
+<h3>Modules</h3>
+<ul>{% for module in student.modules.all %}<li>{{ module.code|upper }} - {{ module.name|title }}</li>{% empty %}<li>No modules enrolled.</li>{% endfor %}</ul>
+<p><a href="{% url 'myApp:home' %}">Back to student list</a></p>
+{% endblock %}

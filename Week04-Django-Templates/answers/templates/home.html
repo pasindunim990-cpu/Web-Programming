@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Students | My University{% endblock %}
+{% block content %}
+<h2>Student list</h2>
+{% if students %}
+<ul>
+  {% for student in students %}
+  <li><a href="{% url 'myApp:student_detail' student.id %}">{{ student.firstName|capfirst }} {{ student.lastName|upper }}</a></li>
+  {% endfor %}
+</ul>
+{% else %}<p>No students have been added yet.</p>{% endif %}
+{% endblock %}
