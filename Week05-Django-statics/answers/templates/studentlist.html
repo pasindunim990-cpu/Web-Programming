@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}<h1>Students</h1>
+{% if page_obj.object_list %}
+<div class="row g-3">{% for student in page_obj %}<div class="col-sm-6 col-lg-4"><div class="card h-100">
+{% if student.image %}<img src="{{ student.image.url }}" class="card-img-top student-photo" alt="Photo of {{ student.firstName }} {{ student.lastName }}">{% endif %}
+<div class="card-body"><h2 class="h5 card-title">{{ student.firstName|capfirst }} {{ student.lastName|upper }}</h2><p class="card-text">Age: {{ student.age }}</p><a class="btn btn-outline-primary" href="{% url 'myApp:student_detail' student.id %}">View details</a></div></div></div>{% endfor %}</div>
+<nav aria-label="Student pages" class="mt-4"><ul class="pagination">
+{% if page_obj.has_previous %}<li class="page-item"><a class="page-link" href="{% url 'myApp:studentlist' page_obj.previous_page_number %}?{{ query_string }}">Previous</a></li>{% endif %}
+{% for number in page_obj.paginator.page_range %}<li class="page-item {% if page_obj.number == number %}active{% endif %}"><a class="page-link" href="{% url 'myApp:studentlist' number %}?{{ query_string }}">{{ number }}</a></li>{% endfor %}
+{% if page_obj.has_next %}<li class="page-item"><a class="page-link" href="{% url 'myApp:studentlist' page_obj.next_page_number %}?{{ query_string }}">Next</a></li>{% endif %}
+</ul></nav>
+{% else %}<p class="alert alert-info">No students have been added yet.</p>{% endif %}{% endblock %}

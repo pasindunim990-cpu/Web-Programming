@@ -1,0 +1,3 @@
+# Week 05 answer - images, static files, Bootstrap and pagination
+
+These files extend the Week 04 University app. Add Pillow to your requirements and add the `image` field to `Student`, then run migrations. Configure `MEDIA_URL`, `MEDIA_ROOT`, `STATIC_URL`, and `STATIC_ROOT` as shown in `settings_additions.py`, and add the routes from `urls_addition.py`. Place templates in your app's templates folder and static assets under `static/myApp/`. The student list view paginates 10 records per page and preserves the current query string in page links. Bootstrap is loaded from its CDN, so internet access is required for Bootstrap styling.

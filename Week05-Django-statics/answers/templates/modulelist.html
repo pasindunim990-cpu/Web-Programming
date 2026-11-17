@@ -1,0 +1,1 @@
+{% extends "base.html" %}{% block content %}<h1>Modules</h1><ul class="list-group">{% for module in modules %}<li class="list-group-item"><strong>{{ module.code }}</strong> - {{ module.name }}</li>{% empty %}<li class="list-group-item">No modules found.</li>{% endfor %}</ul>{% endblock %}
